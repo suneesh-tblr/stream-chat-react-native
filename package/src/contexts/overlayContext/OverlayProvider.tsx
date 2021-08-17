@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
-import { BackHandler, Dimensions, StyleSheet, ViewStyle } from 'react-native';
+import { BackHandler, Dimensions, StyleSheet, ViewStyle, Platform, View } from 'react-native';
 import Dayjs from 'dayjs';
 import Animated, {
   cancelAnimation,
@@ -221,10 +221,10 @@ export const OverlayProvider = <
                   pointerEvents={overlay === 'none' ? 'none' : 'auto'}
                   style={[StyleSheet.absoluteFill, overlayStyle]}
                 >
-                  <BlurView
+                 {Platform.OS === "android" ? <View style={[StyleSheet.absoluteFill, { height, width, backgroundColor: "#00000088" }]}/> : <BlurView
                     blurType={blurType}
                     style={[StyleSheet.absoluteFill, { height, width }]}
-                  />
+                  />}
                 </Animated.View>
                 <MessageOverlay<At, Ch, Co, Ev, Me, Re, Us>
                   MessageActions={MessageActions}
